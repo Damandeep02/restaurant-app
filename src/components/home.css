@@ -1,0 +1,57 @@
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background: url('https://www.luxurylifestylemag.co.uk/wp-content/uploads/2020/11/bar_restaurants_LaSponda_1michelin-star-positano_03-new.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .title {
+    font-size: 5rem;
+    margin-bottom: 2rem;
+    color: #315670;
+    text-align: center;
+  }
+  
+  .button-container {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  
+  .button {
+    flex: 1;
+    padding: 1.5rem 3rem;
+    font-size: 1.3rem;
+    text-align: center;
+    text-decoration: none;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .add-button {
+    background-color: #ff6363;
+    color: rgb(249, 49, 49);
+  }
+  
+  .add-button:hover {
+    background-color: #e74c3c;
+    transform: scale(1.05);
+  }
+  
+  .list-button {
+    background-color: #5f27cd;
+    color: white;
+  }
+  
+  .list-button:hover {
+    background-color: #4a0d99;
+    transform: scale(1.05);
+  }
+  
