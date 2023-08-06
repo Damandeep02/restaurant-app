@@ -1,3 +1,9 @@
+# Restaurant listing platform frontend
+This is the frontend of the restuarant listing platform. It is made in React.js<br>
+It runs on localhost:3000<br>
+We can perform CRUD operations in this application.<br>
+We can List new restaurants, update the existing ones, delete and view the existing ones.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
