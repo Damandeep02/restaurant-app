@@ -16,7 +16,9 @@ function ListRestaurantsPage() {
 
   const fetchRestaurants = async () => {
     try {
-      const response = await axios.get('/restaurants');
+      const response = await axios.get('/restaurants', {
+        params: { includeUser: true },
+      });
       setRestaurants(response.data);
     } catch (error) {
       console.error('Error fetching restaurants:', error);
@@ -108,6 +110,8 @@ function ListRestaurantsPage() {
                 {restaurant.image && (
                   <img className="restaurant-image" src={restaurant.image} alt={restaurant.name} />
                 )}
+                 {restaurant.User && <p className="added-by">Added By: {restaurant.User.name}</p>}
+              <div className="action-buttons"></div>
                 <div className="action-buttons">
                   <button className="edit-button" onClick={() => handleEdit(restaurant.id)}>Edit</button>
                   <button className="delete-button" onClick={() => handleDelete(restaurant.id)}>Delete</button>

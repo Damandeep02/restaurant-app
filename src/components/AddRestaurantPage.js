@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate, Link } from 'react-router-dom';
 import './AddRestaurantPage.css';
@@ -11,6 +11,21 @@ function AddRestaurantPage() {
   const [imageFile, setImageFile] = useState(null);
   const [feedbackMessage, setFeedbackMessage] = useState(null);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [selectedUser, setSelectedUser] = useState('');
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try {
+      const response = await axios.get('/users')
+      setUsers(response.data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+    }
+  };
 
   const handleImageChange = (e) => {
     setImageFile(e.target.files[0]);
@@ -22,6 +37,7 @@ function AddRestaurantPage() {
       formData.append('name', name);
       formData.append('address', address);
       formData.append('contact', contact);
+      formData.append('added_by', selectedUser);
 
       if (imageFile) {
         formData.append('image', imageFile);
@@ -50,6 +66,7 @@ function AddRestaurantPage() {
       {feedbackMessage && <p className="feedback-message success">{feedbackMessage}</p>}
       {errorMessage && <p className="feedback-message error">{errorMessage}</p>}
       <div className="input-container">
+        
         <input
           type="text"
           value={name}
@@ -72,6 +89,18 @@ function AddRestaurantPage() {
           <span className="file-label-text">Choose an Image</span>
           <input type="file" onChange={handleImageChange} />
         </label>
+        <select
+          id="userSelect"
+          value={selectedUser}
+          onChange={(e) => setSelectedUser(e.target.value)}
+        >
+          <option value="">Select User</option>
+          {users.map((user) => (
+            <option key={user.id} value={user.id}>
+              {user.name}
+            </option>
+          ))}
+        </select>
       </div>
       <button className="add-button" onClick={handleAddRestaurant}>
         Add Restaurant
